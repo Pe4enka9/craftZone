@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Review;
 
+use App\Http\Resources\MetaResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -11,11 +12,7 @@ class ReviewCollectionResource extends ResourceCollection
     {
         return [
             'data' => ReviewResource::collection($this->collection),
-            'meta' => [
-                'current_page' => $this->resource->currentPage(),
-                'per_page' => $this->resource->perPage(),
-                'total' => $this->resource->total(),
-            ],
+            'meta' => new MetaResource($this),
         ];
     }
 }
